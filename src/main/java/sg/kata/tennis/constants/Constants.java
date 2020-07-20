@@ -2,9 +2,13 @@ package sg.kata.tennis.constants;
 
 public class Constants {
 	
-	public enum gameScores {zero, fifteen, thirty, forty, win};
-	
-	public enum player {first, second};
+	public enum gameScores {
+		zero, fifteen, thirty, forty, deuce, advantage, win
+	};
+
+	public enum player {
+		first, second
+	};
 	
 	public static final int firstPlayer = 0;
 	
