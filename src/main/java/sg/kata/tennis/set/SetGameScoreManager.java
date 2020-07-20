@@ -10,6 +10,8 @@ public class SetGameScoreManager {
 
 	private boolean additionalRound = false;
 
+	private boolean tieBreak = false;
+	
 	/**
 	 * @param player
 	 * @return
@@ -33,6 +35,11 @@ public class SetGameScoreManager {
 				this.setAdditionalRound(true);
 			}
 		}
+		
+		//If the 2 players reach the score of 6 Games , the Tie-Break rule is activated
+		if (playersSetScores[winningPlayer] == 6 && playersSetScores[losingPlayer] == 6) {
+			this.setTieBreak(true);
+		}
 
 		return playersSetScores[winningPlayer];
 
@@ -44,6 +51,14 @@ public class SetGameScoreManager {
 
 	public void setAdditionalRound(boolean additionalRound) {
 		this.additionalRound = additionalRound;
+	}
+
+	public boolean isTieBreak() {
+		return tieBreak;
+	}
+
+	public void setTieBreak(boolean tieBreak) {
+		this.tieBreak = tieBreak;
 	}
 
 	/**
