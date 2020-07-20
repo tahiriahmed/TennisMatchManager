@@ -21,7 +21,8 @@ Feature: Manage a tennis GAME within a set of a tennis match (abbreviated senari
     And the first player won a point
     Then The first player won the match
 
-  Scenario: If the score is DEUCE , the player who win the point take the ADVANTAGE
+  Scenario: If the player who has the ADVANTAGE loose the point, the score is DEUCE
     Given The score is DEUCE
+    When the first player won a point
     When The first player lose a point
     Then DEUCE rule is activated
