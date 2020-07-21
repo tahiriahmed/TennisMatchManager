@@ -34,7 +34,7 @@ public class SetGameSteps {
 
 	@Then("^The first player win the Set$")
 	public void the_first_player_win_the_Set() throws Throwable {
-		Assert.assertTrue(set.getFirstPlayer().isWinner());
+		Assert.assertTrue(set.getFirstPlayer().isSetWinner());
 	}
 
 	@Then("^The Tie-Break rule is activated$")

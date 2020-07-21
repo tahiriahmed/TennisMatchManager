@@ -34,7 +34,7 @@ public class GameScoreManager {
 		Player losingPlayer = (winningPlayer.equals(firstPlayer)) ? secondPlayer : firstPlayer;
 
 		// nothing to do if the player already win
-		if (!winningPlayer.getScore().equals(gameScores.win)) {
+		if (!winningPlayer.isGameWinner()) {
 			// this treats the normal cases when scores of both players are less than forty
 			if (winningPlayer.getScore().ordinal() < gameScores.forty.ordinal()
 					&& losingPlayer.getScore().ordinal() < gameScores.forty.ordinal()) {

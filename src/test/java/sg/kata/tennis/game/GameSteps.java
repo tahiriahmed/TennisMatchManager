@@ -32,12 +32,12 @@ public class GameSteps {
 
 	@Then("^The first player won the game$")
 	public void the_first_player_won_the_match() throws Throwable {
-		Assert.assertTrue(gameScores.win.equals(game.getFirstPlayer().getScore()));
+		Assert.assertTrue(game.getFirstPlayer().isGameWinner());
 	}
 	
 	@Then("^The second player won the match$")
 	public void the_second_player_won_the_match() throws Throwable {
-		Assert.assertTrue(gameScores.win.equals(game.getSecondPlayer().getScore()));
+		Assert.assertTrue(game.getSecondPlayer().isGameWinner());
 	}
 	
 	//us2
@@ -69,8 +69,8 @@ public class GameSteps {
 		
 		Random random = new Random();
 		
-		//The set must be finished with a winner.
-		while ((!gameScores.win.equals(game.getFirstPlayer().getScore()) && !gameScores.win.equals(game.getSecondPlayer().getScore()))) {
+		//The game must be finished with a winner.
+		while ((!game.getFirstPlayer().isGameWinner() && !game.getSecondPlayer().isGameWinner())) {
 			
 			//Players must be able to score points.
 			if (random.nextBoolean()) {
@@ -84,12 +84,14 @@ public class GameSteps {
 
 	@Then("^The game is over$")
 	public void the_game_is_over() throws Throwable {
-		Assert.assertTrue(gameScores.win.equals(game.getFirstPlayer().getScore()) || gameScores.win.equals(game.getSecondPlayer().getScore()));
+		//The game must be finished with a winner.
+		Assert.assertTrue(game.getFirstPlayer().isGameWinner() || game.getSecondPlayer().isGameWinner());
 	}
 
 	@Then("^the winning player had being determined$")
 	public void the_winning_player_had_being_determined() throws Throwable {
-		Assert.assertTrue(gameScores.win.equals(game.getFirstPlayer().getScore()) ^ gameScores.win.equals(game.getSecondPlayer().getScore()));
+		//After a game is won, the winning player must be determined.(XOR)
+		Assert.assertTrue(game.getFirstPlayer().isGameWinner() ^ game.getSecondPlayer().isGameWinner());
 	}
 
 }

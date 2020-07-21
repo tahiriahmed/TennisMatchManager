@@ -17,8 +17,11 @@ public class Player {
 	// The set starts with a score of 0 Game for each player
 	private int gamesWon = 0;
 	
+	//After a Set is won, the winning player must be determined.
+	private boolean setWinner = false; 
+	
 	//After a game is won, the winning player must be determined.
-	private boolean winner; 
+	private boolean gameWinner = false;
 
 	public String getNom() {
 		return nom;
@@ -36,12 +39,21 @@ public class Player {
 		this.score = score;
 	}
 
-	public boolean isWinner() {
-		return winner;
+	public boolean isSetWinner() {
+		return setWinner;
 	}
 
-	public void setWinner(boolean winner) {
-		this.winner = winner;
+	public void setSetWinner(boolean setWinner) {
+		this.setWinner = setWinner;
+	}
+
+	public boolean isGameWinner() {
+		//return gameWinner;
+		return gameScores.win.equals(this.getScore());
+	}
+
+	public void setGameWinner(boolean gameWinner) {
+		this.gameWinner = gameWinner;
 	}
 
 	public int getGamesWon() {

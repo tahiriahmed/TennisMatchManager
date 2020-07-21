@@ -108,10 +108,10 @@ public class SetGameScoreManager extends GameScoreManager {
 			winGame(player);
 			// at the end of each game we check if the set was over and there is a player
 			// who won the set
-			if (isHeTheWinner(firstPlayer)) {//check if the winner of the game is the first player
-				firstPlayer.setWinner(true);
-			} else if (isHeTheWinner(secondPlayer)) {//check if the winner of the game is the second player
-				secondPlayer.setWinner(true);
+			if (isHeTheWinner(firstPlayer)) {//check if the winner of the set is the first player
+				firstPlayer.setSetWinner(true);
+			} else if (isHeTheWinner(secondPlayer)) {//check if the winner of the set is the second player
+				secondPlayer.setSetWinner(true);
 			} else {//if the set had not yet been completed, we start a new game  
 				startNewGame();
 			}

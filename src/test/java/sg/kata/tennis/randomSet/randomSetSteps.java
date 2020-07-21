@@ -25,7 +25,7 @@ public class randomSetSteps {
 		Random random = new Random();
 		
 		//The set must be finished with a winner.
-		while ((!set.getFirstPlayer().isWinner() && !set.getSecondPlayer().isWinner())) {
+		while ((!set.getFirstPlayer().isSetWinner() && !set.getSecondPlayer().isSetWinner())) {
 			
 			//Players must be able to score points.
 			if (random.nextBoolean()) {
@@ -40,13 +40,13 @@ public class randomSetSteps {
 	@Then("^The match is over$")
 	public void the_match_is_over() throws Throwable {
 		//The set must be finished with a winner.
-		Assert.assertTrue(set.getFirstPlayer().isWinner() || set.getSecondPlayer().isWinner());
+		Assert.assertTrue(set.getFirstPlayer().isSetWinner() || set.getSecondPlayer().isSetWinner());
 	}
 
 	@Then("^the winning player had being determined$")
 	public void the_winning_player_had_being_determined() throws Throwable {
 		//After a game is won, the winning player must be determined.(XOR)
-		Assert.assertTrue(set.getFirstPlayer().isWinner() ^ set.getSecondPlayer().isWinner());
+		Assert.assertTrue(set.getFirstPlayer().isSetWinner() ^ set.getSecondPlayer().isSetWinner());
 	}
 
 }
