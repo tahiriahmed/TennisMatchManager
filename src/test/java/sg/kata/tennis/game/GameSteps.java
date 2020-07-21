@@ -1,5 +1,7 @@
 package sg.kata.tennis.game;
 
+import java.util.Random;
+
 import org.junit.Assert;
 
 import cucumber.api.java.en.Given;
@@ -60,6 +62,34 @@ public class GameSteps {
 		game = new GameScoreManager(new Player(),new Player());
 		game.getFirstPlayer().setScore(gameScores.deuce);
 		game.getSecondPlayer().setScore(gameScores.deuce);
+	}
+	
+	@When("^The game is in progress and the two players are scoring each one against his opponent\\.$")
+	public void the_game_is_in_progress_and_the_two_players_are_scoring_each_one_against_his_opponent() throws Throwable {
+		
+		Random random = new Random();
+		
+		//The set must be finished with a winner.
+		while ((!gameScores.win.equals(game.getFirstPlayer().getScore()) && !gameScores.win.equals(game.getSecondPlayer().getScore()))) {
+			
+			//Players must be able to score points.
+			if (random.nextBoolean()) {
+				game.winPoint(game.getFirstPlayer());
+			} else {
+				game.winPoint(game.getSecondPlayer());
+			}
+			
+		}
+	}
+
+	@Then("^The game is over$")
+	public void the_game_is_over() throws Throwable {
+		Assert.assertTrue(gameScores.win.equals(game.getFirstPlayer().getScore()) || gameScores.win.equals(game.getSecondPlayer().getScore()));
+	}
+
+	@Then("^the winning player had being determined$")
+	public void the_winning_player_had_being_determined() throws Throwable {
+		Assert.assertTrue(gameScores.win.equals(game.getFirstPlayer().getScore()) ^ gameScores.win.equals(game.getSecondPlayer().getScore()));
 	}
 
 }
