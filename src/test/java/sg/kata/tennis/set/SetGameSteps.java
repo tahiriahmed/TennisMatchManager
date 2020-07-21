@@ -22,7 +22,6 @@ public class SetGameSteps {
 		set.winPoint(set.getFirstPlayer());
 		set.winPoint(set.getFirstPlayer());
 		set.winPoint(set.getFirstPlayer());
-		System.out.println("FirstPlayer : "+set.getFirstPlayer().getGamesWon()+" SecondPlayer : "+set.getSecondPlayer().getGamesWon());
 	}
 
 	@When("^The second player won a game$")
@@ -31,7 +30,6 @@ public class SetGameSteps {
 		set.winPoint(set.getSecondPlayer());
 		set.winPoint(set.getSecondPlayer());
 		set.winPoint(set.getSecondPlayer());
-		System.out.println("FirstPlayer : "+set.getFirstPlayer().getGamesWon()+" SecondPlayer : "+set.getSecondPlayer().getGamesWon());
 	}
 
 	@Then("^The first player win the Set$")

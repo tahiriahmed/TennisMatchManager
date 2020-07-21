@@ -50,11 +50,17 @@ public class SetGameScoreManager extends GameScoreManager {
 	 * @return
 	 */
 	public boolean wonDirect(Player player) {
+		
+		Player winningPlayer = player;
+		Player losingPlayer = (winningPlayer.equals(firstPlayer)) ? secondPlayer : firstPlayer;
 
 		// If a player reach the Set score of 6 and the other player has a Set score of
 		// 4 or lower, the player win the Set
-
-		return (!isAdditionalRound() && player.getGamesWon() >= 6 && getSecondPlayer().getGamesWon() <= 4);
+		//System.out.println(!isAdditionalRound());
+		//System.out.println(player.getGamesWon() >= 6);
+		//System.out.println(getSecondPlayer().getGamesWon() <= 4);
+		
+		return (!isAdditionalRound() && player.getGamesWon() >= 6 && losingPlayer.getGamesWon() <= 4);
 
 	}
 	
