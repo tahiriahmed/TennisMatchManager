@@ -50,44 +50,41 @@ public class SetGameScoreManager extends GameScoreManager {
 	 * @return
 	 */
 	public boolean wonDirect(Player player) {
-		
+
 		Player winningPlayer = player;
 		Player losingPlayer = (winningPlayer.equals(firstPlayer)) ? secondPlayer : firstPlayer;
 
 		// If a player reach the Set score of 6 and the other player has a Set score of
 		// 4 or lower, the player win the Set
-		//System.out.println(!isAdditionalRound());
-		//System.out.println(player.getGamesWon() >= 6);
-		//System.out.println(getSecondPlayer().getGamesWon() <= 4);
-		
+
 		return (!isAdditionalRound() && player.getGamesWon() >= 6 && losingPlayer.getGamesWon() <= 4);
 
 	}
-	
+
 	public boolean wonAdditionalRound(Player player) {
-		
+
 		// If a player win a Game and reach the Set score of 6 and the other player has
 		// a Set score of 5, a new Game must be played and the first player who reach
 		// the score of 7 wins the match
-		
+
 		return (isAdditionalRound() && player.getGamesWon() == 7);
-		
+
 	}
-	
+
 	public boolean wonTieBreak(Player player) {
-		
+
 		Player winningPlayer = player;
 		Player losingPlayer = (winningPlayer.equals(firstPlayer)) ? secondPlayer : firstPlayer;
-		
+
 		// The Tie-Break ends as soon as a player gets a least 6 points and gets 2
 		// points more than his opponent
-		
+
 		return (isTieBreak() && (winningPlayer.getGamesWon() - losingPlayer.getGamesWon() >= 2));
-		
+
 	}
 
 	public boolean isHeTheWinner(Player player) {
-		
+		//this includes all the conditions allowing to know that a player has won a game
 		return (wonDirect(player) || wonAdditionalRound(player) || wonTieBreak(player));
 
 	}
@@ -104,15 +101,18 @@ public class SetGameScoreManager extends GameScoreManager {
 	 *
 	 */
 	public gameScores winPoint(Player player) {
+		//call the method that allows a player to score a goal
 		gameScores score = super.winPoint(player);
+		//nothing to do if the game had already been won
 		if (score.equals(gameScores.win)) {
 			winGame(player);
-			
-			if (isHeTheWinner(firstPlayer)) {
+			// at the end of each game we check if the set was over and there is a player
+			// who won the set
+			if (isHeTheWinner(firstPlayer)) {//check if the winner of the game is the first player
 				firstPlayer.setWinner(true);
-			} else if (isHeTheWinner(secondPlayer)) {
+			} else if (isHeTheWinner(secondPlayer)) {//check if the winner of the game is the second player
 				secondPlayer.setWinner(true);
-			} else {
+			} else {//if the set had not yet been completed, we start a new game  
 				startNewGame();
 			}
 		}
