@@ -19,7 +19,7 @@ Feature: Manage a tennis GAME within a set of a tennis match (abbreviated senari
     Given The score is DEUCE
     When the first player won a point
     And the first player won a point
-    Then The first player won the match
+    Then The first player won the game
 
   Scenario: If the player who has the ADVANTAGE loose the point, the score is DEUCE
     Given The score is DEUCE

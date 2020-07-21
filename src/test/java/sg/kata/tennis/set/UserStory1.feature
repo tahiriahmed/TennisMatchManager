@@ -26,9 +26,4 @@ Feature: manage a Tennis SET within a tennis match
     And The second player won a game
     And The first player won a game
     And The first player won a game
-    And The first player won a game
-    And The first player won a game
-    And The first player won a game
-    And The first player won a game
-    And The first player won a game
     Then The first player win the Set

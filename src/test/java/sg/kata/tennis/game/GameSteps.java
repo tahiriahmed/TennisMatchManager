@@ -28,7 +28,7 @@ public class GameSteps {
 		game.winPoint(game.getSecondPlayer());
 	}
 
-	@Then("^The first player won the match$")
+	@Then("^The first player won the game$")
 	public void the_first_player_won_the_match() throws Throwable {
 		Assert.assertTrue(gameScores.win.equals(game.getFirstPlayer().getScore()));
 	}
