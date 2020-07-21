@@ -14,7 +14,7 @@ public class randomSetSteps {
 	
 	private SetGameScoreManager set;
 	
-	@Given("^Game started$")
+	@Given("^The match started$")
 	public void game_started() throws Throwable {
 		set = new SetGameScoreManager(new Player(), new Player());
 	}
