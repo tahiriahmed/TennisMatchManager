@@ -45,8 +45,8 @@ public class SetGameSteps {
 	@Given("^The score is Tie-Break$")
 	public void the_score_is_Tie_Break() throws Throwable {
 		set = new SetGameScoreManager(new Player(), new Player());
-		set.getFirstPlayer().setGamesWon(6);
-		set.getSecondPlayer().setGamesWon(6);
+		set.getFirstPlayer().setSetScore(6);
+		set.getSecondPlayer().setSetScore(6);
 		set.setTieBreak(true);
 	}
 

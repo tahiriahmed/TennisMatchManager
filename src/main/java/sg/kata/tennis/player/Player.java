@@ -12,10 +12,10 @@ public class Player {
 	private String nom;
 	
 	//The game starts with a score of 0 point for each player
-	private gameScores score = gameScores.zero;
+	private gameScores gameScore = gameScores.zero;
 	
 	// The set starts with a score of 0 Game for each player
-	private int gamesWon;
+	private int setScore;
 	
 	//After a Set is won, the winning player must be determined.
 	private boolean setWinner;
@@ -31,12 +31,12 @@ public class Player {
 		this.nom = nom;
 	}
 
-	public gameScores getScore() {
-		return score;
+	public gameScores getGameScore() {
+		return gameScore;
 	}
 
-	public void setScore(gameScores score) {
-		this.score = score;
+	public void setGameScore(gameScores gameScore) {
+		this.gameScore = gameScore;
 	}
 
 	public boolean isSetWinner() {
@@ -55,12 +55,12 @@ public class Player {
 		this.gameWinner = gameWinner;
 	}
 
-	public int getGamesWon() {
-		return gamesWon;
+	public int getSetScore() {
+		return setScore;
 	}
 
-	public void setGamesWon(int gamesWon) {
-		this.gamesWon = gamesWon;
+	public void setSetScore(int setScore) {
+		this.setScore = setScore;
 	}
 	
 }

@@ -44,12 +44,12 @@ public class GameSteps {
 	
 	@Then("^DEUCE rule is activated$")
 	public void deuce_rule_is_activated() throws Throwable {
-		Assert.assertTrue(gameScores.deuce.equals(game.getFirstPlayer().getScore()));
+		Assert.assertTrue(gameScores.deuce.equals(game.getFirstPlayer().getGameScore()));
 	}
 	
 	@Then("^The first player take the ADVANTAGE$")
 	public void the_first_player_take_the_ADVANTAGE() throws Throwable {
-		Assert.assertTrue(gameScores.advantage.equals(game.getFirstPlayer().getScore()));
+		Assert.assertTrue(gameScores.advantage.equals(game.getFirstPlayer().getGameScore()));
 	}
 	
 	@When("^The first player lose a point$")
@@ -60,8 +60,8 @@ public class GameSteps {
 	@When("^The score is DEUCE$")
 	public void the_score_is_DEUCE() throws Throwable {
 		game = new GameScoreManager(new Player(),new Player());
-		game.getFirstPlayer().setScore(gameScores.deuce);
-		game.getSecondPlayer().setScore(gameScores.deuce);
+		game.getFirstPlayer().setGameScore(gameScores.deuce);
+		game.getSecondPlayer().setGameScore(gameScores.deuce);
 	}
 	
 	@When("^The game is in progress and the two players are scoring each one against his opponent\\.$")

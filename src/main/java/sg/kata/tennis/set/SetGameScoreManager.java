@@ -25,23 +25,23 @@ public class SetGameScoreManager extends GameScoreManager {
 
 		// Each time a player win a Game, the Set score changes as follow: 1 -> 2 -> 3
 		// -> 4 -> 5 -> 6 (-> 7)
-		winningPlayer.setGamesWon(winningPlayer.getGamesWon() + 1);
+		winningPlayer.setSetScore(winningPlayer.getSetScore() + 1);
 
 		if (!isAdditionalRound()) {
 			// If a player win a Game and reach the Set score of 6 and the other player has
 			// a Set score of 5, a new Game must be played and the first player who reach
 			// the score of 7 wins the match
-			if (winningPlayer.getGamesWon() == 6 && losingPlayer.getGamesWon() == 5) {
+			if (winningPlayer.getSetScore() == 6 && losingPlayer.getSetScore() == 5) {
 				this.setAdditionalRound(true);
 			}
 		}
 
 		// If the 2 players reach the score of 6 Games , the Tie-Break rule is activated
-		if (winningPlayer.getGamesWon() == 6 && losingPlayer.getGamesWon() == 6) {
+		if (winningPlayer.getSetScore() == 6 && losingPlayer.getSetScore() == 6) {
 			this.setTieBreak(true);
 		}
 
-		return winningPlayer.getGamesWon();
+		return winningPlayer.getSetScore();
 
 	}
 
@@ -57,7 +57,7 @@ public class SetGameScoreManager extends GameScoreManager {
 		// If a player reach the Set score of 6 and the other player has a Set score of
 		// 4 or lower, the player win the Set
 
-		return (!isAdditionalRound() && player.getGamesWon() >= 6 && losingPlayer.getGamesWon() <= 4);
+		return (!isAdditionalRound() && player.getSetScore() >= 6 && losingPlayer.getSetScore() <= 4);
 
 	}
 
@@ -67,7 +67,7 @@ public class SetGameScoreManager extends GameScoreManager {
 		// a Set score of 5, a new Game must be played and the first player who reach
 		// the score of 7 wins the match
 
-		return (isAdditionalRound() && player.getGamesWon() == 7);
+		return (isAdditionalRound() && player.getSetScore() == 7);
 
 	}
 
@@ -79,7 +79,7 @@ public class SetGameScoreManager extends GameScoreManager {
 		// The Tie-Break ends as soon as a player gets a least 6 points and gets 2
 		// points more than his opponent
 
-		return (isTieBreak() && (winningPlayer.getGamesWon() - losingPlayer.getGamesWon() >= 2));
+		return (isTieBreak() && (winningPlayer.getSetScore() - losingPlayer.getSetScore() >= 2));
 
 	}
 
@@ -93,8 +93,8 @@ public class SetGameScoreManager extends GameScoreManager {
 	 * A new Game is played
 	 */
 	public void startNewGame() {
-		getFirstPlayer().setScore(gameScores.zero);
-		getSecondPlayer().setScore(gameScores.zero);
+		getFirstPlayer().setGameScore(gameScores.zero);
+		getSecondPlayer().setGameScore(gameScores.zero);
 		getFirstPlayer().setGameWinner(false);
 		getSecondPlayer().setGameWinner(false);
 	}

@@ -36,17 +36,17 @@ public class GameScoreManager {
 		// nothing to do if the player already win
 		if (!winningPlayer.isGameWinner()) {
 			// this treats the normal cases when scores of both players are less than forty
-			if (winningPlayer.getScore().ordinal() < gameScores.forty.ordinal()
-					&& losingPlayer.getScore().ordinal() < gameScores.forty.ordinal()) {
+			if (winningPlayer.getGameScore().ordinal() < gameScores.forty.ordinal()
+					&& losingPlayer.getGameScore().ordinal() < gameScores.forty.ordinal()) {
 				// we get the index of the next score
-				int nextScore = winningPlayer.getScore().ordinal() + 1;
+				int nextScore = winningPlayer.getGameScore().ordinal() + 1;
 				// we replace the current score by the following one
-				winningPlayer.setScore(gameScores.values()[nextScore]);
+				winningPlayer.setGameScore(gameScores.values()[nextScore]);
 			}
 			// this treats the case of when one player win directly because the score of the
 			// other one is less than forty
-			else if (losingPlayer.getScore().ordinal() < gameScores.forty.ordinal()) {
-				winningPlayer.setScore(gameScores.win);
+			else if (losingPlayer.getGameScore().ordinal() < gameScores.forty.ordinal()) {
+				winningPlayer.setGameScore(gameScores.win);
 			}
 			// this treats the cases of deuce and advantage.
 			else {
@@ -54,9 +54,9 @@ public class GameScoreManager {
 			}
 		}
 		
-		winningPlayer.setGameWinner(gameScores.win.equals(winningPlayer.getScore()));
+		winningPlayer.setGameWinner(gameScores.win.equals(winningPlayer.getGameScore()));
 
-		return winningPlayer.getScore();
+		return winningPlayer.getGameScore();
 	}
 
 	/**
@@ -69,17 +69,17 @@ public class GameScoreManager {
 
 		// this treats the case of deuce, means when a player has just gain forty points
 		// but the other one has already forty points also.
-		if (winningPlayer.getScore().ordinal() < gameScores.forty.ordinal()
-				&& losingPlayer.getScore().equals(gameScores.forty)) {
-			winningPlayer.setScore(gameScores.deuce);
-			losingPlayer.setScore(gameScores.deuce);
+		if (winningPlayer.getGameScore().ordinal() < gameScores.forty.ordinal()
+				&& losingPlayer.getGameScore().equals(gameScores.forty)) {
+			winningPlayer.setGameScore(gameScores.deuce);
+			losingPlayer.setGameScore(gameScores.deuce);
 		}
 		// this treats the transition from deuce status to advantage and win.
 		else {
 			// we get the index of the next score
-			int nextScore = winningPlayer.getScore().ordinal() + 1;
+			int nextScore = winningPlayer.getGameScore().ordinal() + 1;
 			// we replace the current score by the following one
-			winningPlayer.setScore(gameScores.values()[nextScore]);
+			winningPlayer.setGameScore(gameScores.values()[nextScore]);
 		}
 	}
 
@@ -90,11 +90,11 @@ public class GameScoreManager {
 	public gameScores losePoint(Player losingPlayer) {
 
 		// this deals with the case when a score becomes deuce before it was advantage
-		if (losingPlayer.getScore().equals(gameScores.advantage)) {
-			losingPlayer.setScore(gameScores.deuce);
+		if (losingPlayer.getGameScore().equals(gameScores.advantage)) {
+			losingPlayer.setGameScore(gameScores.deuce);
 		}
 
-		return losingPlayer.getScore();
+		return losingPlayer.getGameScore();
 	}
 
 	public Player getFirstPlayer() {
