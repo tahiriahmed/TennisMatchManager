@@ -6,10 +6,8 @@ import sg.kata.tennis.player.Player;
 
 public class SetGameScoreManager extends GameScoreManager {
 
-	// allows to know if there is any additional round in progress
 	private boolean additionalRound;
 
-	// allows to know if the tiebreak is activated
 	private boolean tieBreak;
 
 	public SetGameScoreManager(Player firstPlayer, Player secondPlayer) {
@@ -25,20 +23,14 @@ public class SetGameScoreManager extends GameScoreManager {
 		Player winningPlayer = player;
 		Player losingPlayer = (winningPlayer.equals(firstPlayer)) ? secondPlayer : firstPlayer;
 
-		// Each time a player win a Game, the Set score changes as follow: 1 -> 2 -> 3
-		// -> 4 -> 5 -> 6 (-> 7)
 		winningPlayer.setSetScore(winningPlayer.getSetScore() + 1);
 
 		if (!isAdditionalRound()) {
-			// If a player win a Game and reach the Set score of 6 and the other player has
-			// a Set score of 5, a new Game must be played and the first player who reach
-			// the score of 7 wins the match
 			if (winningPlayer.getSetScore() == 6 && losingPlayer.getSetScore() == 5) {
 				this.setAdditionalRound(true);
 			}
 		}
 
-		// If the 2 players reach the score of 6 Games , the Tie-Break rule is activated
 		if (winningPlayer.getSetScore() == 6 && losingPlayer.getSetScore() == 6) {
 			this.setTieBreak(true);
 		}
@@ -56,18 +48,11 @@ public class SetGameScoreManager extends GameScoreManager {
 		Player winningPlayer = player;
 		Player losingPlayer = (winningPlayer.equals(firstPlayer)) ? secondPlayer : firstPlayer;
 
-		// If a player reach the Set score of 6 and the other player has a Set score of
-		// 4 or lower, the player win the Set
-
 		return (!isAdditionalRound() && winningPlayer.getSetScore() >= 6 && losingPlayer.getSetScore() <= 4);
 
 	}
 
 	public boolean wonAdditionalRound(Player player) {
-
-		// If a player win a Game and reach the Set score of 6 and the other player has
-		// a Set score of 5, a new Game must be played and the first player who reach
-		// the score of 7 wins the match
 
 		return (isAdditionalRound() && player.getSetScore() == 7);
 
@@ -78,16 +63,12 @@ public class SetGameScoreManager extends GameScoreManager {
 		Player winningPlayer = player;
 		Player losingPlayer = (winningPlayer.equals(firstPlayer)) ? secondPlayer : firstPlayer;
 
-		// The Tie-Break ends as soon as a player gets a least 6 points and gets 2
-		// points more than his opponent
-
 		return (isTieBreak() && (winningPlayer.getSetScore() - losingPlayer.getSetScore() >= 2));
 
 	}
 
 	public boolean isHeTheWinner(Player player) {
-		// this includes all the conditions allowing to know that a player has won a
-		// game
+		
 		return (wonDirect(player) || wonAdditionalRound(player) || wonTieBreak(player));
 
 	}
@@ -96,10 +77,8 @@ public class SetGameScoreManager extends GameScoreManager {
 	 * A new Game is played
 	 */
 	public void startNewGame() {
-		// Reset score of the two players
 		getFirstPlayer().setGameScore(gameScores.zero);
 		getSecondPlayer().setGameScore(gameScores.zero);
-		// redefine the two players as non-winning
 		getFirstPlayer().setGameWinner(false);
 		getSecondPlayer().setGameWinner(false);
 	}
@@ -110,19 +89,14 @@ public class SetGameScoreManager extends GameScoreManager {
 	 * immediately check if there is a winner among the two players.
 	 */
 	public gameScores winPoint(Player player) {
-		// call the method that allows a player to score a point
 		gameScores score = super.winPoint(player);
-		// If the player has just won a game, the set score must be updated
 		if (player.isGameWinner()) {
-			// Updating the set score
 			winGame(player);
-			// at the end of each game we check if the set was over and there is a player
-			// who won the set
-			if (isHeTheWinner(firstPlayer)) {// check if the winner of the set is the first player
+			if (isHeTheWinner(firstPlayer)) {
 				firstPlayer.setSetWinner(true);
-			} else if (isHeTheWinner(secondPlayer)) {// check if the winner of the set is the second player
+			} else if (isHeTheWinner(secondPlayer)) {
 				secondPlayer.setSetWinner(true);
-			} else {// if the set had not yet been completed, we start a new game
+			} else {
 				startNewGame();
 			}
 		}

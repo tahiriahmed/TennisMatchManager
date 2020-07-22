@@ -8,27 +8,18 @@ import sg.kata.tennis.constants.Constants.gameScores;
  */
 public class Player {
 	
-	//Example of some information that this class could contain
-	private String nom;
-	
-	//The game starts with a score of 0 point for each player
+	private String name;
 	private gameScores gameScore = gameScores.zero;
-	
-	// The set starts with a score of 0 Game for each player
 	private int setScore;
-	
-	//After a Set is won, the winning player must be determined.
 	private boolean setWinner;
-	
-	//After a game is won, the winning player must be determined.
 	private boolean gameWinner;
 
-	public String getNom() {
-		return nom;
+	public String getName() {
+		return name;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public gameScores getGameScore() {

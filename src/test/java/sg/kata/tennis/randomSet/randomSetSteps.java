@@ -45,6 +45,15 @@ public class randomSetSteps {
 
 	@Then("^the winning player had being determined$")
 	public void the_winning_player_had_being_determined() throws Throwable {
+		
+		if (set.getFirstPlayer().isSetWinner())
+			System.out.println("The set winner is the first player, the score is : ("+set.getFirstPlayer().getSetScore()+","+set.getSecondPlayer().getSetScore()+")");
+		
+		if (set.getSecondPlayer().isSetWinner())
+			System.out.println("The set winner is the second player, the score is : ("+set.getFirstPlayer().getSetScore()+","+set.getSecondPlayer().getSetScore()+")");
+			
+		
+		
 		//After a game is won, the winning player must be determined.(XOR)
 		Assert.assertTrue(set.getFirstPlayer().isSetWinner() ^ set.getSecondPlayer().isSetWinner());
 	}

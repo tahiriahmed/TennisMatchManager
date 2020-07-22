@@ -90,6 +90,13 @@ public class GameSteps {
 
 	@Then("^the winning player had being determined$")
 	public void the_winning_player_had_being_determined() throws Throwable {
+		
+		if (game.getFirstPlayer().isGameWinner())
+			System.out.println("The game winner is the first player");
+		
+		if (game.getSecondPlayer().isGameWinner())
+			System.out.println("The game winner is the second player");
+		
 		//After a game is won, the winning player must be determined.(XOR)
 		Assert.assertTrue(game.getFirstPlayer().isGameWinner() ^ game.getSecondPlayer().isGameWinner());
 	}
