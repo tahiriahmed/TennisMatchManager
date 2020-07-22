@@ -6,9 +6,11 @@ import sg.kata.tennis.player.Player;
 
 public class SetGameScoreManager extends GameScoreManager {
 
-	private boolean additionalRound = false;
+	//allows to know if there is any additional round in progress
+	private boolean additionalRound;
 
-	private boolean tieBreak = false;
+	//allows to know if the tiebreak is activated
+	private boolean tieBreak;
 
 	public SetGameScoreManager(Player firstPlayer, Player secondPlayer) {
 		super(firstPlayer, secondPlayer);
@@ -57,7 +59,7 @@ public class SetGameScoreManager extends GameScoreManager {
 		// If a player reach the Set score of 6 and the other player has a Set score of
 		// 4 or lower, the player win the Set
 
-		return (!isAdditionalRound() && player.getSetScore() >= 6 && losingPlayer.getSetScore() <= 4);
+		return (!isAdditionalRound() && winningPlayer.getSetScore() >= 6 && losingPlayer.getSetScore() <= 4);
 
 	}
 
@@ -93,8 +95,10 @@ public class SetGameScoreManager extends GameScoreManager {
 	 * A new Game is played
 	 */
 	public void startNewGame() {
+		//Reset score of the two players
 		getFirstPlayer().setGameScore(gameScores.zero);
 		getSecondPlayer().setGameScore(gameScores.zero);
+		//redefine the two players as non-winning
 		getFirstPlayer().setGameWinner(false);
 		getSecondPlayer().setGameWinner(false);
 	}
