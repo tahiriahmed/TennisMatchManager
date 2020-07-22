@@ -95,6 +95,8 @@ public class SetGameScoreManager extends GameScoreManager {
 	public void startNewGame() {
 		getFirstPlayer().setScore(gameScores.zero);
 		getSecondPlayer().setScore(gameScores.zero);
+		getFirstPlayer().setGameWinner(false);
+		getSecondPlayer().setGameWinner(false);
 	}
 
 	/**

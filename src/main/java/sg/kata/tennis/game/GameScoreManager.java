@@ -53,6 +53,8 @@ public class GameScoreManager {
 				handleDeuceCase(player);
 			}
 		}
+		
+		winningPlayer.setGameWinner(gameScores.win.equals(winningPlayer.getScore()));
 
 		return winningPlayer.getScore();
 	}
